@@ -10,18 +10,27 @@ class PlantetsContextProvider extends Component {
     this.state = {
       loading: true,
       planets: [],
+      data: [],
+      filterByName: {
+        name: '',
+      },
     };
     this.getPlanets = this.getPlanets.bind(this);
   }
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    console.log(results);
     this.setState({ planets: results, loading: false });
   }
 
   testePrinta = () => {
     console.log('funcionou');
+  }
+
+  filterUsingName = () => {
+    const { planets, filterByName } = this.state;
+    const tempData = planets.filter((planet) => planet.name.includes(filterByName.name));
+    console.log(tempData);
   }
 
   render() {
