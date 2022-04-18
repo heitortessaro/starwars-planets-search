@@ -1,9 +1,13 @@
 import React from 'react';
-import './App.css';
+import PlantetsContextProvider from './contexts/PlanetsContext';
 
 function App() {
   return (
-    <span>Hello, App!</span>
+    <div className="App">
+      <PlantetsContextProvider>
+        Teste
+      </PlantetsContextProvider>
+    </div>
   );
 }
 
