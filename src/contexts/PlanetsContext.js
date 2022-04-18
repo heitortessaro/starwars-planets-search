@@ -8,15 +8,16 @@ class PlantetsContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teste: 'teste de texto',
+      loading: true,
       planets: [],
     };
     this.getPlanets = this.getPlanets.bind(this);
   }
 
   async getPlanets() {
-    const result = await fetchPlanets();
-    console.log(result);
+    const { results } = await fetchPlanets();
+    // console.log(results);
+    this.setState({ planets: results, loading: false });
   }
 
   testePrinta = () => {
@@ -25,7 +26,6 @@ class PlantetsContextProvider extends Component {
 
   render() {
     const { children } = this.props;
-    console.log(children);
     return (
       <PlantetsContext.Provider
         value={ { ...this.state,
@@ -39,7 +39,8 @@ class PlantetsContextProvider extends Component {
 }
 
 PlantetsContextProvider.propTypes = {
-  children: PropTypes.arrayOf({}).isRequired,
+  // children: PropTypes.arrayOf({}).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default PlantetsContextProvider;
