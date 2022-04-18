@@ -16,7 +16,7 @@ class PlantetsContextProvider extends Component {
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    // console.log(results);
+    console.log(results);
     this.setState({ planets: results, loading: false });
   }
 
