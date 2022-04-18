@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from './components/Table';
 import PlantetsContextProvider from './contexts/PlanetsContext';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <PlantetsContextProvider>
         Teste
+        <Table />
       </PlantetsContextProvider>
     </div>
   );
