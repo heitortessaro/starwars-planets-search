@@ -4,6 +4,7 @@ import NumericFilter from './components/NumericFilter';
 import Table from './components/Table';
 import Filter from './components/Filter';
 import PlantetsContextProvider from './contexts/PlanetsContext';
+import Ordenation from './components/Ordenation';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <PlantetsContextProvider>
         <InputTextFilter />
         <NumericFilter />
+        <Ordenation />
         <Filter />
         <Table />
       </PlantetsContextProvider>

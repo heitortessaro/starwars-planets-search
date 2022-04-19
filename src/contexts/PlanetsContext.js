@@ -23,10 +23,13 @@ class PlantetsContextProvider extends Component {
         column: 'population',
         comparison: 'maior que',
         value: '0' },
-      filterNumericColumnsOption:
+      columnsOption:
         ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
       savedNumericFilters: [],
-
+      order: {
+        column: 'population',
+        sort: 'ASC',
+      },
     };
     this.getPlanets = this.getPlanets.bind(this);
   }

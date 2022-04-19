@@ -5,13 +5,13 @@ function NumericFilter() {
   const { setNumericFilter,
     filterByNumericValues,
     addNumericFilter,
-    filterNumericColumnsOption,
+    columnsOption,
     savedNumericFilters,
     removeAllNumericFilters } = useContext(PlantetsContext);
 
   const { value, comparison, column } = filterByNumericValues;
 
-  const options = filterNumericColumnsOption.filter((element) => {
+  const options = columnsOption.filter((element) => {
     let check = true;
     savedNumericFilters.forEach((filter) => {
       if (filter.column === element) check = false;
