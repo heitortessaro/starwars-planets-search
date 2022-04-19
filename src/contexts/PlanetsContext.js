@@ -14,11 +14,16 @@ class PlantetsContextProvider extends Component {
       filterByName: {
         name: '',
       },
-      numericFilter: {
-        numValue: '0',
-        operator: 'maior_que',
-        columns: 'population',
+      filterByNumericValues: {
+        column: 'population',
+        comparison: 'maior que',
+        value: '0',
       },
+      // numericFilter: {
+      //   numValue: '0',
+      //   operator: 'maior_que',
+      //   columns: 'population',
+      // },
     };
     this.getPlanets = this.getPlanets.bind(this);
   }
@@ -52,19 +57,19 @@ class PlantetsContextProvider extends Component {
   }
 
   filterNumerically = () => {
-    const { planets, numericFilter } = this.state;
-    const { numValue, operator, columns } = numericFilter;
-    const value = parseInt(numValue, 10);
+    const { planets, filterByNumericValues } = this.state;
+    const { value, comparison, column } = filterByNumericValues;
+    const numValue = parseInt(value, 10);
     let tempData = planets;
-    switch (operator) {
-    case 'maior_que':
-      tempData = planets.filter((p) => parseInt(p[columns], 10) > value);
+    switch (comparison) {
+    case 'maior que':
+      tempData = planets.filter((p) => parseInt(p[column], 10) > numValue);
       break;
-    case 'menor_que':
-      tempData = planets.filter((p) => parseInt(p[columns], 10) < value);
+    case 'menor que':
+      tempData = planets.filter((p) => parseInt(p[column], 10) < numValue);
       break;
-    case 'igual':
-      tempData = planets.filter((p) => parseInt(p[columns], 10) === value);
+    case 'igual a':
+      tempData = planets.filter((p) => parseInt(p[column], 10) === numValue);
       break;
     default:
       break;
@@ -74,15 +79,17 @@ class PlantetsContextProvider extends Component {
 
   setNumericFilter = ({ target }) => {
     const { name, value } = target;
-    const { numericFilter } = this.state;
-    const { numValue } = numericFilter;
+    const { filterByNumericValues } = this.state;
+    const { value: numValue } = filterByNumericValues;
     // console.log(`${name}: ${value}`);
     const re = /^[-+]?\d*$/; // https://regexlib.com/Search.aspx?k=negative
-    if ((name === 'numValue' && value.match(re)) || name !== 'numValue') {
-      this.setState({ numericFilter: { ...numericFilter, [name]: value } });
-    } else if (name === 'numValue') {
+    if ((name === 'value' && value.match(re)) || name !== 'value') {
+      this.setState({ filterByNumericValues:
+        { ...filterByNumericValues, [name]: value } });
+    } else if (name === 'value') {
       // console.log('aqui');
-      this.setState({ numericFilter: { ...numericFilter, numValue } });
+      this.setState({ filterByNumericValues:
+        { ...filterByNumericValues, value: numValue } });
     }
   }
 
