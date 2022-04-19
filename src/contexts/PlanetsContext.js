@@ -4,6 +4,11 @@ import fetchPlanets from '../services/fetchPlanets';
 
 export const PlantetsContext = createContext();
 
+// const INITIAL_NUMERIC_FILTER_CONFIG = {
+//   column: 'default',
+//   comparison: 'default',
+//   value: '0' };
+
 class PlantetsContextProvider extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +22,7 @@ class PlantetsContextProvider extends Component {
       filterByNumericValues: {
         column: 'population',
         comparison: 'maior que',
-        value: '0',
-      },
+        value: '0' },
       filterNumericColumnsOption:
         ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
       savedNumericFilters: [],
@@ -53,8 +57,11 @@ class PlantetsContextProvider extends Component {
 
   addNumericFilter = () => {
     const { filterByNumericValues, savedNumericFilters } = this.state;
-    this.setState({ savedNumericFilters: [...savedNumericFilters,
-      filterByNumericValues] }, () => this.filterNumerically());
+    this.setState(
+      { savedNumericFilters: [...savedNumericFilters, filterByNumericValues] },
+      // filterByNumericValues: INITIAL_NUMERIC_FILTER_CONFIG },
+      () => this.filterNumerically(),
+    );
   }
 
   removeNumericFilter = (index) => {

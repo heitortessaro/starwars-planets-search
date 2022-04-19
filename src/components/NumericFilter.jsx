@@ -19,8 +19,6 @@ function NumericFilter() {
     return check;
   });
 
-  // console.log(options);
-
   return (
     <form>
       <label htmlFor="column">
@@ -31,7 +29,11 @@ function NumericFilter() {
           name="column"
           onChange={ setNumericFilter }
           value={ column }
+          // defaultValue="test"
+          // defaultValue="default"
         >
+          {/* <option value="" disabled selected>Selecione...</option> */}
+          {/* <option value="default" disabled hidden>Choose here</option> */}
           {options.map((element) => (
             <option key={ `select${element}` } value={ element }>{element}</option>
           ))}
@@ -46,6 +48,7 @@ function NumericFilter() {
           onChange={ setNumericFilter }
           value={ comparison }
         >
+          {/* <option value="default" disabled hidden>Choose here</option> */}
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
           <option value="menor que">menor que</option>
