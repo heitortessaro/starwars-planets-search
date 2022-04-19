@@ -59,6 +59,12 @@ class PlantetsContextProvider extends Component {
       filterByNumericValues] });
   }
 
+  removeNumericFilter = (index) => {
+    const { savedNumericFilters } = this.state;
+    const tempData = savedNumericFilters.filter((filter, ind) => index !== ind);
+    this.setState({ savedNumericFilters: tempData });
+  }
+
   filterNumerically = () => {
     const { planets, filterByNumericValues } = this.state;
     const { value, comparison, column } = filterByNumericValues;
@@ -105,7 +111,8 @@ class PlantetsContextProvider extends Component {
           getPlanets: this.getPlanets,
           setFilterName: this.setFilterName,
           setNumericFilter: this.setNumericFilter,
-          filterNumerically: this.filterNumerically } }
+          filterNumerically: this.filterNumerically,
+          removeNumericFilter: this.removeNumericFilter } }
       >
         {children}
       </PlantetsContext.Provider>
