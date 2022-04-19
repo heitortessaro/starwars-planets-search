@@ -63,6 +63,10 @@ class PlantetsContextProvider extends Component {
     this.setState({ savedNumericFilters: tempData }, () => this.filterNumerically());
   }
 
+  removeAllNumericFilters = () => {
+    this.setState({ savedNumericFilters: [] }, () => this.filterNumerically());
+  }
+
   applyNumericFilter = (data, filterInfo) => {
     const { value, comparison, column } = filterInfo;
     const numValue = parseInt(value, 10);
@@ -119,7 +123,8 @@ class PlantetsContextProvider extends Component {
           setNumericFilter: this.setNumericFilter,
           filterNumerically: this.filterNumerically,
           addNumericFilter: this.addNumericFilter,
-          removeNumericFilter: this.removeNumericFilter } }
+          removeNumericFilter: this.removeNumericFilter,
+          removeAllNumericFilters: this.removeAllNumericFilters } }
       >
         {children}
       </PlantetsContext.Provider>

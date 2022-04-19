@@ -6,7 +6,9 @@ function NumericFilter() {
     filterByNumericValues,
     addNumericFilter,
     filterNumericColumnsOption,
-    savedNumericFilters } = useContext(PlantetsContext);
+    savedNumericFilters,
+    removeAllNumericFilters } = useContext(PlantetsContext);
+
   const { value, comparison, column } = filterByNumericValues;
 
   const options = filterNumericColumnsOption.filter((element) => {
@@ -17,7 +19,7 @@ function NumericFilter() {
     return check;
   });
 
-  console.log(options);
+  // console.log(options);
 
   return (
     <form>
@@ -66,6 +68,13 @@ function NumericFilter() {
         onClick={ addNumericFilter }
       >
         Filter
+      </button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ removeAllNumericFilters }
+      >
+        Remover Filtros
       </button>
     </form>
   );

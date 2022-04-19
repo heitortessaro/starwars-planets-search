@@ -6,7 +6,7 @@ function Filters() {
   return (
     <>
       {savedNumericFilters.map((filter, index) => (
-        <div key={ `filter${index}` }>
+        <div key={ `filter${index}` } data-testid="filter">
           <span>{`${filter.column} ${filter.comparison} ${filter.value}`}</span>
           <button type="button" onClick={ () => removeNumericFilter(index) }> X </button>
         </div>
