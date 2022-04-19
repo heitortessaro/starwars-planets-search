@@ -19,11 +19,8 @@ class PlantetsContextProvider extends Component {
         comparison: 'maior que',
         value: '0',
       },
-      // numericFilter: {
-      //   numValue: '0',
-      //   operator: 'maior_que',
-      //   columns: 'population',
-      // },
+      savedNumericFilters: [],
+
     };
     this.getPlanets = this.getPlanets.bind(this);
   }
@@ -56,6 +53,12 @@ class PlantetsContextProvider extends Component {
       () => this.filterUsingName());
   }
 
+  addNumericFilter = () => {
+    const { filterByNumericValues, savedNumericFilters } = this.state;
+    this.setState({ savedNumericFilters: [...savedNumericFilters,
+      filterByNumericValues] });
+  }
+
   filterNumerically = () => {
     const { planets, filterByNumericValues } = this.state;
     const { value, comparison, column } = filterByNumericValues;
@@ -74,7 +77,7 @@ class PlantetsContextProvider extends Component {
     default:
       break;
     }
-    this.setState({ data: tempData });
+    this.setState({ data: tempData }, () => this.addNumericFilter());
   }
 
   setNumericFilter = ({ target }) => {
