@@ -19,6 +19,8 @@ class PlantetsContextProvider extends Component {
         comparison: 'maior que',
         value: '0',
       },
+      filterNumericColumnsOption:
+        ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
       savedNumericFilters: [],
 
     };
@@ -28,10 +30,6 @@ class PlantetsContextProvider extends Component {
   async getPlanets() {
     const { results } = await fetchPlanets();
     this.setState({ planets: results, data: results, loading: false });
-  }
-
-  testePrinta = () => {
-    console.log('funcionou');
   }
 
   filterUsingName = () => {
@@ -82,7 +80,6 @@ class PlantetsContextProvider extends Component {
     default:
       break;
     }
-    console.log(tempData.length);
     return tempData;
   }
 
@@ -94,27 +91,6 @@ class PlantetsContextProvider extends Component {
     });
     this.setState({ data: tempData });
   }
-
-  // filterNumerically = () => {
-  //   const { planets, filterByNumericValues } = this.state;
-  //   const { value, comparison, column } = filterByNumericValues;
-  //   const numValue = parseInt(value, 10);
-  //   let tempData = planets;
-  //   switch (comparison) {
-  //   case 'maior que':
-  //     tempData = planets.filter((p) => parseInt(p[column], 10) > numValue);
-  //     break;
-  //   case 'menor que':
-  //     tempData = planets.filter((p) => parseInt(p[column], 10) < numValue);
-  //     break;
-  //   case 'igual a':
-  //     tempData = planets.filter((p) => parseInt(p[column], 10) === numValue);
-  //     break;
-  //   default:
-  //     break;
-  //   }
-  //   this.setState({ data: tempData });
-  // }
 
   setNumericFilter = ({ target }) => {
     const { name, value } = target;

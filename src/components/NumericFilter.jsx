@@ -4,8 +4,21 @@ import { PlantetsContext } from '../contexts/PlanetsContext';
 function NumericFilter() {
   const { setNumericFilter,
     filterByNumericValues,
-    addNumericFilter } = useContext(PlantetsContext);
+    addNumericFilter,
+    filterNumericColumnsOption,
+    savedNumericFilters } = useContext(PlantetsContext);
   const { value, comparison, column } = filterByNumericValues;
+
+  const options = filterNumericColumnsOption.filter((element) => {
+    let check = true;
+    savedNumericFilters.forEach((filter) => {
+      if (filter.column === element) check = false;
+    });
+    return check;
+  });
+
+  console.log(options);
+
   return (
     <form>
       <label htmlFor="column">
@@ -17,11 +30,9 @@ function NumericFilter() {
           onChange={ setNumericFilter }
           value={ column }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {options.map((element) => (
+            <option key={ `select${element}` } value={ element }>{element}</option>
+          ))}
         </select>
       </label>
       <label htmlFor="comparison">
