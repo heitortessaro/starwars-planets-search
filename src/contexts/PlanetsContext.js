@@ -15,7 +15,7 @@ class PlantetsContextProvider extends Component {
         name: '',
       },
       numericFilter: {
-        numValue: '',
+        numValue: '0',
         operator: 'maior_que',
         columns: 'population',
       },
@@ -51,6 +51,27 @@ class PlantetsContextProvider extends Component {
       () => this.filterUsingName());
   }
 
+  filterNumerically = () => {
+    const { planets, numericFilter } = this.state;
+    const { numValue, operator, columns } = numericFilter;
+    const value = parseInt(numValue, 10);
+    let tempData = planets;
+    switch (operator) {
+    case 'maior_que':
+      tempData = planets.filter((p) => parseInt(p[columns], 10) > value);
+      break;
+    case 'menor_que':
+      tempData = planets.filter((p) => parseInt(p[columns], 10) < value);
+      break;
+    case 'igual':
+      tempData = planets.filter((p) => parseInt(p[columns], 10) === value);
+      break;
+    default:
+      break;
+    }
+    this.setState({ data: tempData });
+  }
+
   setNumericFilter = ({ target }) => {
     const { name, value } = target;
     const { numericFilter } = this.state;
@@ -73,7 +94,8 @@ class PlantetsContextProvider extends Component {
           testePrinta: this.testePrinta,
           getPlanets: this.getPlanets,
           setFilterName: this.setFilterName,
-          setNumericFilter: this.setNumericFilter } }
+          setNumericFilter: this.setNumericFilter,
+          filterNumerically: this.filterNumerically } }
       >
         {children}
       </PlantetsContext.Provider>

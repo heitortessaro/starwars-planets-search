@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { PlantetsContext } from '../contexts/PlanetsContext';
 
 function NumericFilter() {
-  const { setNumericFilter, numericFilter } = useContext(PlantetsContext);
+  const { setNumericFilter,
+    numericFilter,
+    filterNumerically } = useContext(PlantetsContext);
   const { numValue, operator, columns } = numericFilter;
   return (
     <form>
@@ -47,7 +49,13 @@ function NumericFilter() {
           value={ numValue }
         />
       </label>
-      <button type="button" data-testid="button-filter">Filter</button>
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ filterNumerically }
+      >
+        Filter
+      </button>
     </form>
   );
 }
