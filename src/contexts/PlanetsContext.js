@@ -14,6 +14,11 @@ class PlantetsContextProvider extends Component {
       filterByName: {
         name: '',
       },
+      numericFilter: {
+        numValue: '',
+        operator: 'maior_que',
+        columns: 'population',
+      },
     };
     this.getPlanets = this.getPlanets.bind(this);
   }
@@ -42,8 +47,22 @@ class PlantetsContextProvider extends Component {
     const { value } = target;
     const { filterByName } = this.state;
     // inspired by: https://stackoverflow.com/questions/43040721/how-to-update-nested-state-properties-in-react
-    this.setState({ filterByName: { ...filterByName, name: (value) } },
+    this.setState({ filterByName: { ...filterByName, name: value } },
       () => this.filterUsingName());
+  }
+
+  setNumericFilter = ({ target }) => {
+    const { name, value } = target;
+    const { numericFilter } = this.state;
+    const { numValue } = numericFilter;
+    // console.log(`${name}: ${value}`);
+    const re = /^[-+]?\d*$/; // https://regexlib.com/Search.aspx?k=negative
+    if ((name === 'numValue' && value.match(re)) || name !== 'numValue') {
+      this.setState({ numericFilter: { ...numericFilter, [name]: value } });
+    } else if (name === 'numValue') {
+      // console.log('aqui');
+      this.setState({ numericFilter: { ...numericFilter, numValue } });
+    }
   }
 
   render() {
@@ -53,7 +72,8 @@ class PlantetsContextProvider extends Component {
         value={ { ...this.state,
           testePrinta: this.testePrinta,
           getPlanets: this.getPlanets,
-          setFilterName: this.setFilterName } }
+          setFilterName: this.setFilterName,
+          setNumericFilter: this.setNumericFilter } }
       >
         {children}
       </PlantetsContext.Provider>
