@@ -56,35 +56,65 @@ class PlantetsContextProvider extends Component {
   addNumericFilter = () => {
     const { filterByNumericValues, savedNumericFilters } = this.state;
     this.setState({ savedNumericFilters: [...savedNumericFilters,
-      filterByNumericValues] });
+      filterByNumericValues] }, () => this.filterNumerically());
   }
 
   removeNumericFilter = (index) => {
     const { savedNumericFilters } = this.state;
     const tempData = savedNumericFilters.filter((filter, ind) => index !== ind);
-    this.setState({ savedNumericFilters: tempData });
+    this.setState({ savedNumericFilters: tempData }, () => this.filterNumerically());
   }
 
-  filterNumerically = () => {
-    const { planets, filterByNumericValues } = this.state;
-    const { value, comparison, column } = filterByNumericValues;
+  applyNumericFilter = (data, filterInfo) => {
+    const { value, comparison, column } = filterInfo;
     const numValue = parseInt(value, 10);
-    let tempData = planets;
+    let tempData = data;
     switch (comparison) {
     case 'maior que':
-      tempData = planets.filter((p) => parseInt(p[column], 10) > numValue);
+      tempData = data.filter((p) => parseInt(p[column], 10) > numValue);
       break;
     case 'menor que':
-      tempData = planets.filter((p) => parseInt(p[column], 10) < numValue);
+      tempData = data.filter((p) => parseInt(p[column], 10) < numValue);
       break;
     case 'igual a':
-      tempData = planets.filter((p) => parseInt(p[column], 10) === numValue);
+      tempData = data.filter((p) => parseInt(p[column], 10) === numValue);
       break;
     default:
       break;
     }
-    this.setState({ data: tempData }, () => this.addNumericFilter());
+    console.log(tempData.length);
+    return tempData;
   }
+
+  filterNumerically = () => {
+    const { planets, savedNumericFilters } = this.state;
+    let tempData = planets;
+    savedNumericFilters.forEach((filter) => {
+      tempData = this.applyNumericFilter(tempData, filter);
+    });
+    this.setState({ data: tempData });
+  }
+
+  // filterNumerically = () => {
+  //   const { planets, filterByNumericValues } = this.state;
+  //   const { value, comparison, column } = filterByNumericValues;
+  //   const numValue = parseInt(value, 10);
+  //   let tempData = planets;
+  //   switch (comparison) {
+  //   case 'maior que':
+  //     tempData = planets.filter((p) => parseInt(p[column], 10) > numValue);
+  //     break;
+  //   case 'menor que':
+  //     tempData = planets.filter((p) => parseInt(p[column], 10) < numValue);
+  //     break;
+  //   case 'igual a':
+  //     tempData = planets.filter((p) => parseInt(p[column], 10) === numValue);
+  //     break;
+  //   default:
+  //     break;
+  //   }
+  //   this.setState({ data: tempData });
+  // }
 
   setNumericFilter = ({ target }) => {
     const { name, value } = target;
@@ -112,6 +142,7 @@ class PlantetsContextProvider extends Component {
           setFilterName: this.setFilterName,
           setNumericFilter: this.setNumericFilter,
           filterNumerically: this.filterNumerically,
+          addNumericFilter: this.addNumericFilter,
           removeNumericFilter: this.removeNumericFilter } }
       >
         {children}

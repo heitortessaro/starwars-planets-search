@@ -4,7 +4,7 @@ import { PlantetsContext } from '../contexts/PlanetsContext';
 function NumericFilter() {
   const { setNumericFilter,
     filterByNumericValues,
-    filterNumerically } = useContext(PlantetsContext);
+    addNumericFilter } = useContext(PlantetsContext);
   const { value, comparison, column } = filterByNumericValues;
   return (
     <form>
@@ -52,7 +52,7 @@ function NumericFilter() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ filterNumerically }
+        onClick={ addNumericFilter }
       >
         Filter
       </button>
