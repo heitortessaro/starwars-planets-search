@@ -3,7 +3,7 @@ import { PlantetsContext } from '../contexts/PlanetsContext';
 import tableHeader from '../services/tableHeader';
 
 function Table() {
-  const { loading, planets, getPlanets } = useContext(PlantetsContext);
+  const { loading, data, getPlanets } = useContext(PlantetsContext);
   useEffect(() => { getPlanets(); }, [getPlanets]);
   return (
     <div>
@@ -16,7 +16,7 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {planets.map((planet) => (
+            {data.map((planet) => (
               <tr key={ `key${planet.name}` }>
                 <td>{planet.name}</td>
                 <td>{planet.rotation_period}</td>

@@ -3,7 +3,7 @@ const tableHeader = [
   'Rotation Period',
   'Orbital Period',
   'Diameter',
-  'Clmate',
+  'Climate',
   'Gravity',
   'Terrain',
   'Surface Water',

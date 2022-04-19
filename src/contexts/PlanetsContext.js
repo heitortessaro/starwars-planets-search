@@ -20,7 +20,7 @@ class PlantetsContextProvider extends Component {
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    this.setState({ planets: results, loading: false });
+    this.setState({ planets: results, data: results, loading: false });
   }
 
   testePrinta = () => {
@@ -29,8 +29,21 @@ class PlantetsContextProvider extends Component {
 
   filterUsingName = () => {
     const { planets, filterByName } = this.state;
-    const tempData = planets.filter((planet) => planet.name.includes(filterByName.name));
-    console.log(tempData);
+    if (filterByName.name === '') {
+      this.setState({ data: planets });
+    } else {
+      const tempData = planets
+        .filter((planet) => planet.name.includes(filterByName.name));
+      this.setState({ data: tempData });
+    }
+  }
+
+  setFilterName = ({ target }) => {
+    const { value } = target;
+    const { filterByName } = this.state;
+    // inspired by: https://stackoverflow.com/questions/43040721/how-to-update-nested-state-properties-in-react
+    this.setState({ filterByName: { ...filterByName, name: (value) } },
+      () => this.filterUsingName());
   }
 
   render() {
@@ -39,7 +52,8 @@ class PlantetsContextProvider extends Component {
       <PlantetsContext.Provider
         value={ { ...this.state,
           testePrinta: this.testePrinta,
-          getPlanets: this.getPlanets } }
+          getPlanets: this.getPlanets,
+          setFilterName: this.setFilterName } }
       >
         {children}
       </PlantetsContext.Provider>
