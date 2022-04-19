@@ -39,6 +39,12 @@ class PlantetsContextProvider extends Component {
     this.setState({ planets: results, data: results, loading: false });
   }
 
+  UpdateOrdenationConfig = ({ target }) => {
+    const { name, value } = target;
+    const { order } = this.state;
+    this.setState({ order: { ...order, [name]: value } });
+  };
+
   filterUsingName = () => {
     const { planets, filterByName } = this.state;
     if (filterByName.name === '') {

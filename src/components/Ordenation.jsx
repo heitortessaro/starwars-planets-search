@@ -2,13 +2,18 @@ import React, { useContext } from 'react';
 import { PlantetsContext } from '../contexts/PlanetsContext';
 
 function Ordenation() {
-  const { columnsOption } = useContext(PlantetsContext);
+  const { columnsOption, UpdateOrdenationConfig } = useContext(PlantetsContext);
 
   return (
     <form>
       <label htmlFor="ordernation">
         Ordenar
-        <select id="ordernation" data-testid="column-sort">
+        <select
+          name="column"
+          id="ordernation"
+          data-testid="column-sort"
+          onChange={ UpdateOrdenationConfig }
+        >
           {columnsOption.map((element) => (
             <option key={ `order-by-${element}` } value={ element }>{element}</option>
           ))}
@@ -20,6 +25,7 @@ function Ordenation() {
           data-testid="column-sort-input-asc"
           name="sort"
           value="ASC"
+          onSelect={ UpdateOrdenationConfig }
         />
         Ascendente
         <input
@@ -27,6 +33,7 @@ function Ordenation() {
           data-testid="column-sort-input-desc"
           name="sort"
           value="DESC"
+          onSelect={ UpdateOrdenationConfig }
         />
         Descendente
       </div>
