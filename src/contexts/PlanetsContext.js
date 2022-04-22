@@ -36,7 +36,7 @@ class PlantetsContextProvider extends Component {
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    this.setState({ planets: results, data: results, loading: false });
+    this.setState({ planets: results, loading: false }, () => this.ordenation());
   }
 
   UpdateOrdenationConfig = ({ target }) => {
@@ -45,17 +45,17 @@ class PlantetsContextProvider extends Component {
     this.setState({ order: { ...order, [name]: value } });
   };
 
-  ordenation = (data, column, sort) => {
-    const unknownObjects = data.filter((e) => e[column] === 'unknown');
-    const kwonObjects = data.filter((e) => e[column] !== 'unknown');
-    // console.log(kwonObjects);
-    // console.log(unknownObjects);
+  ordenation = () => {
+    const { planets, order } = this.state;
+    const { column, sort } = order;
+    const unknownObjects = planets.filter((e) => e[column] === 'unknown');
+    const kwonObjects = planets.filter((e) => e[column] !== 'unknown');
     const sortedData = kwonObjects.sort((a, b) => {
       const var1 = a[column] === 'unknown' ? 0 : parseInt(a[column], 10);
       const var2 = b[column] === 'unknown' ? 0 : parseInt(b[column], 10);
       return sort === 'ASC' ? var1 - var2 : var2 - var1;
     });
-    return [...sortedData, ...unknownObjects];
+    this.setState({ data: [...sortedData, ...unknownObjects] });
   };
 
   filterUsingName = () => {

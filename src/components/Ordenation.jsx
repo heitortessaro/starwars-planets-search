@@ -2,7 +2,10 @@ import React, { useContext } from 'react';
 import { PlantetsContext } from '../contexts/PlanetsContext';
 
 function Ordenation() {
-  const { columnsOption, UpdateOrdenationConfig } = useContext(PlantetsContext);
+  const {
+    columnsOption,
+    UpdateOrdenationConfig,
+    ordenation } = useContext(PlantetsContext);
 
   return (
     <form>
@@ -37,7 +40,7 @@ function Ordenation() {
         />
         Descendente
       </div>
-      <button data-testid="column-sort-button" type="button">
+      <button data-testid="column-sort-button" type="button" onClick={ ordenation }>
         Ordenar
       </button>
     </form>
