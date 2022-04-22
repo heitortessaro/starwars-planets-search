@@ -140,7 +140,8 @@ class PlantetsContextProvider extends Component {
           filterNumerically: this.filterNumerically,
           addNumericFilter: this.addNumericFilter,
           removeNumericFilter: this.removeNumericFilter,
-          removeAllNumericFilters: this.removeAllNumericFilters } }
+          removeAllNumericFilters: this.removeAllNumericFilters,
+          UpdateOrdenationConfig: this.UpdateOrdenationConfig } }
       >
         {children}
       </PlantetsContext.Provider>

@@ -25,7 +25,7 @@ function Ordenation() {
           data-testid="column-sort-input-asc"
           name="sort"
           value="ASC"
-          onSelect={ UpdateOrdenationConfig }
+          onClick={ UpdateOrdenationConfig }
         />
         Ascendente
         <input
@@ -33,7 +33,7 @@ function Ordenation() {
           data-testid="column-sort-input-desc"
           name="sort"
           value="DESC"
-          onSelect={ UpdateOrdenationConfig }
+          onClick={ UpdateOrdenationConfig }
         />
         Descendente
       </div>
