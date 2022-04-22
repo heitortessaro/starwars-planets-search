@@ -45,6 +45,19 @@ class PlantetsContextProvider extends Component {
     this.setState({ order: { ...order, [name]: value } });
   };
 
+  ordenation = (data, column, sort) => {
+    const unknownObjects = data.filter((e) => e[column] === 'unknown');
+    const kwonObjects = data.filter((e) => e[column] !== 'unknown');
+    // console.log(kwonObjects);
+    // console.log(unknownObjects);
+    const sortedData = kwonObjects.sort((a, b) => {
+      const var1 = a[column] === 'unknown' ? 0 : parseInt(a[column], 10);
+      const var2 = b[column] === 'unknown' ? 0 : parseInt(b[column], 10);
+      return sort === 'ASC' ? var1 - var2 : var2 - var1;
+    });
+    return [...sortedData, ...unknownObjects];
+  };
+
   filterUsingName = () => {
     const { planets, filterByName } = this.state;
     if (filterByName.name === '') {
@@ -141,7 +154,8 @@ class PlantetsContextProvider extends Component {
           addNumericFilter: this.addNumericFilter,
           removeNumericFilter: this.removeNumericFilter,
           removeAllNumericFilters: this.removeAllNumericFilters,
-          UpdateOrdenationConfig: this.UpdateOrdenationConfig } }
+          UpdateOrdenationConfig: this.UpdateOrdenationConfig,
+          ordenation: this.ordenation } }
       >
         {children}
       </PlantetsContext.Provider>

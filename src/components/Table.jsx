@@ -3,8 +3,12 @@ import { PlantetsContext } from '../contexts/PlanetsContext';
 import tableHeader from '../services/tableHeader';
 
 function Table() {
-  const { loading, data, getPlanets } = useContext(PlantetsContext);
+  const { loading, data, getPlanets, order, ordenation } = useContext(PlantetsContext);
+  const { column, sort } = order;
   useEffect(() => { getPlanets(); }, [getPlanets]);
+  const sortedData = ordenation(data, column, sort);
+  console.log(sortedData);
+
   return (
     <div>
       {loading && <span>Loading...</span>}
@@ -16,7 +20,7 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {data.map((planet) => (
+            {sortedData.map((planet) => (
               <tr key={ `key${planet.name}` }>
                 <td>{planet.name}</td>
                 <td>{planet.rotation_period}</td>
