@@ -36,7 +36,7 @@ class PlantetsContextProvider extends Component {
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    this.setState({ planets: results, loading: false }, () => this.ordenation());
+    this.setState({ planets: results, data: results, loading: false });
   }
 
   UpdateOrdenationConfig = ({ target }) => {
