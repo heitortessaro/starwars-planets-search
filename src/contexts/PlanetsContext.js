@@ -36,7 +36,9 @@ class PlantetsContextProvider extends Component {
 
   async getPlanets() {
     const { results } = await fetchPlanets();
-    this.setState({ planets: results, data: results, loading: false });
+    // localCompare: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+    const orderedResults = results.sort((a, b) => a.name.localeCompare(b.name));
+    this.setState({ planets: orderedResults, data: orderedResults, loading: false });
   }
 
   UpdateOrdenationConfig = ({ target }) => {
