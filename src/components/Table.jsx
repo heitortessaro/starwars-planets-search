@@ -11,7 +11,7 @@ function Table() {
   // const sortedData = ordenation(data, column, sort);
 
   return (
-    <div className="table-responsive-sm">
+    <div className="table-responsive-sm mt-4 px-2 pb-2">
       {loading && <span>Loading...</span>}
       {!loading && (
         <table className="table table-ligth table-hover table align-middle">

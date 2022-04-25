@@ -20,7 +20,7 @@ function NumericFilter() {
   });
 
   return (
-    <form>
+    <form className="mx-auto">
       <label htmlFor="column">
         Columns
         <select
@@ -40,7 +40,7 @@ function NumericFilter() {
           ))}
         </select>
       </label>
-      <label htmlFor="comparison">
+      <label htmlFor="comparison" className="ms-2">
         Operator
         <select
           data-testid="comparison-filter"
@@ -56,7 +56,7 @@ function NumericFilter() {
           <option value="menor que">menor que</option>
         </select>
       </label>
-      <label htmlFor="number-selector">
+      <label htmlFor="number-selector" className="ms-2">
         Value
         <input
           type="number"
@@ -65,12 +65,14 @@ function NumericFilter() {
           name="value"
           onChange={ setNumericFilter }
           value={ value }
+          className="form-control"
         />
       </label>
       <button
         type="button"
         data-testid="button-filter"
         onClick={ addNumericFilter }
+        className="btn btn-success ms-2"
       >
         Filter
       </button>
@@ -78,6 +80,7 @@ function NumericFilter() {
         type="button"
         data-testid="button-remove-filters"
         onClick={ removeAllNumericFilters }
+        className="btn btn-secondary ms-2"
       >
         Remover Filtros
       </button>

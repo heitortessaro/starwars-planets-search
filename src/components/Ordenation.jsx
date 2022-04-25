@@ -8,7 +8,7 @@ function Ordenation() {
     ordenation } = useContext(PlantetsContext);
 
   return (
-    <form>
+    <form className="mx-auto  ">
       <label htmlFor="ordernation">
         Ordenar
         <select
@@ -23,7 +23,7 @@ function Ordenation() {
           ))}
         </select>
       </label>
-      <div className="form-check form-check-inline">
+      <div className="form-check form-check-inline ms-3">
         <label className="form-check-label" htmlFor="asc">
           <input
             type="radio"
@@ -37,7 +37,7 @@ function Ordenation() {
           Ascendente
         </label>
       </div>
-      <div className="form-check form-check-inline">
+      <div className="form-check form-check-inline ">
         <label className="form-check-label" htmlFor="desc">
           <input
             type="radio"
@@ -51,8 +51,12 @@ function Ordenation() {
           Descendente
         </label>
       </div>
-
-      <button data-testid="column-sort-button" type="button" onClick={ ordenation }>
+      <button
+        data-testid="column-sort-button"
+        type="button"
+        onClick={ ordenation }
+        className="btn btn-success ms-2"
+      >
         Ordenar
       </button>
     </form>

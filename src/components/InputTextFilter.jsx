@@ -6,7 +6,7 @@ function InputTextFilter() {
   const { name } = filterByName;
   // useEffect(() => filterByName, [filterByName, name]);
   return (
-    <div className="input-group flex-nowrap">
+    <div className="input-group mx-auto w-25 mt-2 ">
       <input
         type="text"
         placeholder="Nome do Planeta"

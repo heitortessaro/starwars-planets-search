@@ -8,11 +8,14 @@ import Ordenation from './components/Ordenation';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
       <PlantetsContextProvider>
+        <img className="w-25 mx-auto d-block" src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Star_wars2.svg" alt="star wars logo" />
         <InputTextFilter />
-        <NumericFilter />
-        <Ordenation />
+        <div className="d-lg-flex mt-3 justify-content-evenly">
+          <NumericFilter />
+          <Ordenation />
+        </div>
         <Filter />
         <Table />
       </PlantetsContextProvider>
