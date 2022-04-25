@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { PlantetsContext } from '../contexts/PlanetsContext';
+import '../App.css';
 
 function Ordenation() {
   const {
@@ -24,7 +25,7 @@ function Ordenation() {
         </select>
       </label>
       <div className="form-check form-check-inline ms-3">
-        <label className="form-check-label" htmlFor="asc">
+        <label className="form-check-label bg-light p-1 rounded" htmlFor="asc">
           <input
             type="radio"
             data-testid="column-sort-input-asc"
@@ -38,14 +39,14 @@ function Ordenation() {
         </label>
       </div>
       <div className="form-check form-check-inline ">
-        <label className="form-check-label" htmlFor="desc">
+        <label className="form-check-label bg-light p-1 rounded" htmlFor="desc">
           <input
             type="radio"
             data-testid="column-sort-input-desc"
             name="sort"
             value="DESC"
             onClick={ UpdateOrdenationConfig }
-            className="form-check-input"
+            className="form-check-input "
             id="desc"
           />
           Descendente
