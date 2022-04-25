@@ -6,13 +6,14 @@ function InputTextFilter() {
   const { name } = filterByName;
   // useEffect(() => filterByName, [filterByName, name]);
   return (
-    <div>
+    <div className="input-group mx-auto w-25 mt-2 ">
       <input
         type="text"
         placeholder="Nome do Planeta"
         onChange={ setFilterName }
         value={ name }
         data-testid="name-filter"
+        className="form-control"
       />
     </div>
   );

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { PlantetsContext } from '../contexts/PlanetsContext';
 import tableHeader from '../services/tableHeader';
+// import style from '../css/Table.module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Table() {
   const { loading, data, getPlanets } = useContext(PlantetsContext);
@@ -9,11 +11,11 @@ function Table() {
   // const sortedData = ordenation(data, column, sort);
 
   return (
-    <div>
+    <div className="table-responsive-sm mt-4 px-2 pb-2">
       {loading && <span>Loading...</span>}
       {!loading && (
-        <table>
-          <thead>
+        <table className="table table-ligth table-hover table align-middle">
+          <thead className="table-dark">
             <tr>
               {tableHeader.map((item, index) => <th key={ `header${index}` }>{item}</th>)}
             </tr>
