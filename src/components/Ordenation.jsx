@@ -16,30 +16,42 @@ function Ordenation() {
           id="ordernation"
           data-testid="column-sort"
           onChange={ UpdateOrdenationConfig }
+          className="form-select "
         >
           {columnsOption.map((element) => (
             <option key={ `order-by-${element}` } value={ element }>{element}</option>
           ))}
         </select>
       </label>
-      <div>
-        <input
-          type="radio"
-          data-testid="column-sort-input-asc"
-          name="sort"
-          value="ASC"
-          onClick={ UpdateOrdenationConfig }
-        />
-        Ascendente
-        <input
-          type="radio"
-          data-testid="column-sort-input-desc"
-          name="sort"
-          value="DESC"
-          onClick={ UpdateOrdenationConfig }
-        />
-        Descendente
+      <div className="form-check form-check-inline">
+        <label className="form-check-label" htmlFor="asc">
+          <input
+            type="radio"
+            data-testid="column-sort-input-asc"
+            name="sort"
+            value="ASC"
+            onClick={ UpdateOrdenationConfig }
+            className="form-check-input"
+            id="asc"
+          />
+          Ascendente
+        </label>
       </div>
+      <div className="form-check form-check-inline">
+        <label className="form-check-label" htmlFor="desc">
+          <input
+            type="radio"
+            data-testid="column-sort-input-desc"
+            name="sort"
+            value="DESC"
+            onClick={ UpdateOrdenationConfig }
+            className="form-check-input"
+            id="desc"
+          />
+          Descendente
+        </label>
+      </div>
+
       <button data-testid="column-sort-button" type="button" onClick={ ordenation }>
         Ordenar
       </button>

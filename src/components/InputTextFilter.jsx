@@ -6,13 +6,14 @@ function InputTextFilter() {
   const { name } = filterByName;
   // useEffect(() => filterByName, [filterByName, name]);
   return (
-    <div>
+    <div className="input-group flex-nowrap">
       <input
         type="text"
         placeholder="Nome do Planeta"
         onChange={ setFilterName }
         value={ name }
         data-testid="name-filter"
+        className="form-control"
       />
     </div>
   );

@@ -29,6 +29,7 @@ function NumericFilter() {
           name="column"
           onChange={ setNumericFilter }
           value={ column }
+          className="form-select"
           // defaultValue="test"
           // defaultValue="default"
         >
@@ -47,6 +48,7 @@ function NumericFilter() {
           name="comparison"
           onChange={ setNumericFilter }
           value={ comparison }
+          className="form-select"
         >
           {/* <option value="default" disabled hidden>Choose here</option> */}
           <option value="maior que">maior que</option>
