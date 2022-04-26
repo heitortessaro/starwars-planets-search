@@ -11,7 +11,7 @@ function Ordenation() {
   return (
     <form className="mx-auto  ">
       <label htmlFor="ordernation">
-        Ordenar
+        <span className="text-light fw-bold bg-black rounded px-1"> Ordenar </span>
         <select
           name="column"
           id="ordernation"

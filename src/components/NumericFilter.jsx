@@ -22,7 +22,7 @@ function NumericFilter() {
   return (
     <form className="mx-auto">
       <label htmlFor="column">
-        Columns
+        <span className="text-light fw-bold bg-black rounded px-1"> Columns </span>
         <select
           data-testid="column-filter"
           id="column"
@@ -40,8 +40,8 @@ function NumericFilter() {
           ))}
         </select>
       </label>
-      <label htmlFor="comparison" className="ms-2">
-        Operator
+      <label htmlFor="comparison" className="ms-2 ">
+        <span className="text-light fw-bold bg-black rounded px-1"> Operator </span>
         <select
           data-testid="comparison-filter"
           id="comparison"
@@ -57,7 +57,7 @@ function NumericFilter() {
         </select>
       </label>
       <label htmlFor="number-selector" className="ms-2">
-        Value
+        <span className="text-light fw-bold bg-black rounded px-1"> Value </span>
         <input
           type="number"
           id="number-selector"
