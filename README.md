@@ -1,10 +1,11 @@
 # O Projeto
 
 Esse projeto fornece uma lista com filtros de planetas do universo de Star Wars usando **Context API e Hooks** para controlar os estados globais.
+Você pode acessar a aplicação com esse [link](https://starwars-planets-search-rosy.vercel.app/).
 
 ---
 
-# Habilidades
+## Habilidades
 
 Nesse projeto foram testadas as seguintes habilidades:
 
